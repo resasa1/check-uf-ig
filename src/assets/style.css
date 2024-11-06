@@ -1,0 +1,238 @@
+:root {
+    --bg-color: #f7faff;
+    --bg-image: radial-gradient(rgb(145, 144, 144) 1px, transparent 1px);
+    --bg-size: 20px 20px; 
+    --border-color: 1px solid rgb(190, 190, 190);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'inter', sans-serif;
+}
+
+.title__json {
+    text-align: center;
+}
+
+.body__content {
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-size: var(--bg-size);
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.navbar_title {
+    font-size: 20px;
+}
+
+.navbar__json {
+    display: flex;
+    justify-content: center;
+    padding: 4px 16px;
+    align-items: center;
+    border-bottom: var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+}
+
+.navbar__json h1 {
+    margin: 8px 0;;
+    flex: 1;
+    font-weight: bold;
+}
+
+.how__json {
+    margin-top: 28px;
+    max-width: 400px;
+}
+
+
+.navbar__json a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 20px;
+}
+
+.navbar__json a:hover {
+    background-color: rgb(220, 219, 219);
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    max-width: 500px;
+}
+
+.input__json{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+
+input {
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: var(--border-color);
+    margin: auto;
+    width: 50%;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color:rgb(220, 219, 219);
+
+}
+
+.unfollowers-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    padding-top: 20px;
+    max-height: 1000px;
+}
+
+.unfollowers-list ol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem
+}
+
+.unfollowers-list li {
+    font-size: 10px;
+    display: flex;
+    border: 1px sollid;
+    border-radius: 5px;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid;
+    background-color: #f9f9f9;
+    
+}
+
+footer {
+    border-top: var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+    border-top: 1px solid #aaa;
+    gap: 2rem;
+    background-color: var(--bg-color);
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+.follower__upload, .following__upload {
+    border: var(--border-color);
+    border-radius: 5px;
+    padding: 6px;
+}
+
+label {
+    font-size: 12px;
+}
+
+.guide__json {
+
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.guide__content {
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+}
+
+/* Media queries untuk responsif */
+@media (max-width: 768px) {
+    
+    .card {
+        padding: 10px;
+        margin: 10px;
+        width: 80%;
+    }
+
+    .title__json {
+        font-size: 1.2em;
+    }
+
+    .input__json {
+        gap: 15px;
+    }
+
+    .result__json {
+        padding: 8px 16px;
+    }
+    .unfollowers-list ol {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem
+    }
+    .how__json {
+        margin-top: 28px;
+        max-width: 250px;
+    }
+    .navbar__json a {
+        display: none;
+    }
+    footer {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title__json {
+        font-size: 1em;
+    }
+
+    .result__json {
+        padding: 6px 12px;
+    }
+    .unfollowers-list ol {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem
+    }
+    .navbar__json a {
+        display: none;
+    }
+    footer {
+        padding: 40px;
+    }
+}
