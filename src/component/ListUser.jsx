@@ -13,26 +13,37 @@ function ListUser() {
         reader.onload = (event) => {
             try {
                 const jsonData = JSON.parse(event.target.result);
-                let usernames;
-
-                // Mengecek apakah file adalah follower atau following
+                let usernames = [];
+    
+                // Jika type 'followers', langsung mengambil data dari array followers
                 if (type === 'followers') {
-                    usernames = jsonData.followers.map(item => item.string_list_data[0].href);
-                } else if (type === 'following') {
-                    usernames = jsonData.relationships_following.map(item => item.string_list_data[0].href);
+                    if (Array.isArray(jsonData)) {
+                        usernames = jsonData.map(item => item.string_list_data[0].value);
+                    } else {
+                        throw new Error("Format JSON followers tidak sesuai");
+                    }
+                } 
+                // Jika type 'following', mengambil data dari relationships_following
+                else if (type === 'following') {
+                    if (jsonData.relationships_following && Array.isArray(jsonData.relationships_following)) {
+                        usernames = jsonData.relationships_following.map(item => item.string_list_data[0].value);
+                    } else {
+                        throw new Error("Format JSON following tidak sesuai");
+                    }
                 }
-
+    
                 setData(usernames);
             } catch (error) {
                 console.error("Error parsing JSON:", error);
-                alert("File JSON tidak valid. Pastikan format file sesuai.");
+                alert("File JSON tidak valid atau formatnya tidak sesuai.");
             }
         };
-
+    
         if (file) {
             reader.readAsText(file);
         }
     };
+    
 
     // Fungsi untuk mengecek siapa saja yang tidak follow balik
     const handleCheckUnfollowers = (e) => {
@@ -46,30 +57,31 @@ function ListUser() {
         <div className='card'>
             <h4 className='title__json'>Upload File JSON dari akun Instagram</h4>
             <form onSubmit={handleCheckUnfollowers} className="input__json">
-                <div className='follower__upload'>
-                <label htmlFor="follower__json">Upload File follower.json</label>
-                <input 
-                    type="file" 
-                    accept=".json" 
-                    onChange={(e) => handleFileUpload(e, setFollowerData, 'followers')} 
-                    className="file-upload"
-                />
-                </div>
-                <br />
+    <div className='follower__upload'>
+        <label htmlFor="follower__json">Upload File follower.json</label>
+        <input 
+            type="file" 
+            accept=".json" 
+            onChange={(e) => handleFileUpload(e, setFollowerData, 'followers')} 
+            className="file-upload"
+        />
+    </div>
+    <br />
 
-                <div className='following__upload'>
-                <label htmlFor="following__json">Upload File following.json</label>
-                <input 
-                    type="file" 
-                    accept=".json" 
-                    onChange={(e) => handleFileUpload(e, setFollowingData, 'following')}
-                    className="file-upload"
-                />
-                </div>
-                <br />
+    <div className='following__upload'>
+        <label htmlFor="following__json">Upload File following.json</label>
+        <input 
+            type="file" 
+            accept=".json" 
+            onChange={(e) => handleFileUpload(e, setFollowingData, 'following')}
+            className="file-upload"
+        />
+    </div>
+    <br />
 
-                <button type="submit" className="result__json">Cek hasil</button>
-            </form>
+    <button type="submit" className="result__json">Cek hasil</button>
+</form>
+
 
             
         </div>
